@@ -73,8 +73,8 @@
     </div>
 
     <div id="inicio" class="section">
-        <h1>NOS CASAMOS</h1>
-        <p>Y QUEREMOS CELEBRARLO CON VOS...</p>
+        <h1>MI BAT MITZVA</h1>
+        <p>Y QUIERO CELEBRARLO CON VOS...</p>
     </div>
 
     <div id="fecha" class="section">
@@ -85,7 +85,7 @@
     <div id="ubicacion" class="section" style="position: relative; height: 100vh; background: url('https://cdn0.casamientos.com.ar/vendor/7742/3_2/1280/jpg/www_7_177742-166870094263434.jpeg') no-repeat center center/cover; display: flex; align-items: center; justify-content: center;">
         <div style="background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border-radius: 20px; padding: 30px; text-align: center; max-width: 400px;">
             <h2 style="color: black;">FIESTA</h2>
-            <p style="color: black; font-size: 20px;">12:00 PM</p>
+            <p style="color: black; font-size: 20px;">12:30 PM</p>
             <h3 style="color: black;">JANO'S BENAVIDEZ 1</h3>
             <a href="https://maps.app.goo.gl/6QCEr8jZSK7QptjP9" target="_blank" style="text-decoration: none; color: #000;"><button style="background: white; padding: 15px 25px; border-radius: 20px; font-size: 18px; border: none; cursor: pointer; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);">VER UBICACIÓN</button></a>
         </div>
@@ -122,18 +122,19 @@
 
     <script>
         function countdownTimer() {
-            const eventDate = new Date("2025-08-24T12:30:00").getTime();
-            setInterval(() => {
-                const now = new Date().getTime();
-                const timeLeft = eventDate - now;
-                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-                document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-            }, 1000);
-        }
-        countdownTimer();
+        const eventDate = new Date("2025-08-24T12:30:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const timeLeft = eventDate - now;
+            const months = Math.floor(timeLeft / (1000 * 60 * 60 * 24 * 30));
+            const days = Math.floor((timeLeft % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            document.getElementById("countdown").innerHTML = `${months}m ${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }, 1000);
+    }
+    countdownTimer();
     </script>
 </body>
 </html>
