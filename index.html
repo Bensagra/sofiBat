@@ -1,263 +1,326 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sofi mi bat mitzva</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sofi mi bat mitzva</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f3e7dc;
+      text-align: center;
+      scroll-behavior: smooth;
+    }
 
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f3e7dc;
-            text-align: center;
-            scroll-behavior: smooth;
-        }
-        .header {
-            background-color: #d9c7b4;
-            padding: 15px;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            font-size: 16px;
-            z-index: 1000;
-        }
-        .header a {
-            color: black;
-            text-decoration: none;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .section {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            padding: 20px;
-        }
-        .countdown {
-            font-size: 40px;
-            color: white;
-text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
-font-weight: bold;
-        }
-        .confirmation-button, .gift-button {
-            background: white;
-            padding: 15px 25px;
-            border-radius: 20px;
-            font-size: 20px;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
-        .image-section {
-            width: 80%;
-            max-width: 600px;
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
-        .star {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background: white;
-  border-radius: 50%;
-  opacity: 0.6;
-  box-shadow: 0 0 8px white;
-  animation: twinkle 2s infinite ease-in-out;
+    .header {
+      background-color: #d9c7b4;
+      padding: 10px 15px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px 15px;
+      font-size: 16px;
+      z-index: 1000;
+    }
+
+    .header a {
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .section {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .countdown {
+      font-size: 40px;
+      color: white;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+      font-weight: bold;
+    }
+
+    .confirmation-button, .gift-button {
+      background: white;
+      padding: 15px 25px;
+      border-radius: 20px;
+      font-size: 20px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .image-section {
+      width: 80%;
+      max-width: 600px;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .star {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.6;
+      box-shadow: 0 0 8px white;
+      animation: twinkle 2s infinite ease-in-out;
+    }
+    .section-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+  height: auto;
 }
 
-@keyframes twinkle {
-  0%, 100% { opacity: 0.2; transform: scale(0.8); }
-  50% { opacity: 1; transform: scale(1.4); }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.4); }
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        font-size: 14px;
+      }
+
+      .carousel-control-prev-icon,
+      .carousel-control-next-icon {
+        width: 30px;
+        height: 30px;
+      }
+
+      .section {
+        padding: 10px;
+        min-height: fit-content;
+      }
+
+      #info .section-inner {
+        flex-direction: column !important;
+      }
+
+      #info .carousel,
+      #info .info-box {
+        width: 100% !important;
+      }
+
+      .countdown {
+        font-size: 28px;
+      }
+
+      .confirmation-button {
+        font-size: 18px;
+        padding: 12px 20px;
+      }
+    }
+    @media (max-width: 768px) {
+  #info .section-inner {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  #info .carousel,
+  #info .info-box {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .carousel-inner img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
 }
-    </style>
+@media (max-width: 768px) {
+  #info .section-inner {
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+
+  #info .carousel,
+  #info .info-box {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  .carousel-inner img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+  }
+}
+  </style>
 </head>
 <body>
-    <div class="header">
-        <a href="#inicio">Inicio</a>
-        <a href="#fecha">Agendar fecha</a>
-        <a href="#ubicacion">Ubicación</a>
-        <a href="#vestimenta">Vestimenta</a>
-        <a href="#info">Info adicional</a>
-        <a href="#regalo">Regalo</a>
-        <a href="#confirmar">Confirmar asistencia</a>
-    </div>
-    <div id="inicio" class="section" style="position: relative; background: url('IMG_0181.JPG') no-repeat center center / cover;">
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); backdrop-filter: blur(5px); z-index: 0;"></div>
-        
-        <div class="container position-relative z-1 text-center">
-          <h1 style="color: #c1a88e; font-size: 4rem; font-weight: 700; text-shadow: 0 0 10px #8f7661;">MI BAT MITZVA</h1>
-          <p style="color: white; font-size: 1.5rem; font-weight: 500; text-transform: uppercase;">Y QUIERO CELEBRARLO CON VOS...</p>
-      
-          <!-- Estrellas decorativas -->
-          <div class="stars-container position-absolute top-0 start-0 w-100 h-100 overflow-hidden" id="stars-container"></div>
-        </div>
-      </div>
+  <div class="header">
+    <a href="#inicio">Inicio</a>
+    <a href="#fecha">Agendar fecha</a>
+    <a href="#ubicacion">Ubicación</a>
+    <a href="#vestimenta">Vestimenta</a>
+    <a href="#info">Info adicional</a>
+    <a href="#regalo">Regalo</a>
+    <a href="#confirmar">Confirmar asistencia</a>
+  </div>
 
-    <div id="fecha" class="section" style="background-image: url(./IMG_1347.jpg); background-size: cover; background-position: top; position: relative;">
-        <h2 class="countdown">FALTAN</h2>
-        <p class="countdown" id="countdown"></p>
+  <div id="inicio" class="section" style="position: relative; background: url('IMG_0181.JPG') no-repeat center center / cover;">
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); backdrop-filter: blur(5px); z-index: 0;"></div>
+    <div class="container position-relative z-1 text-center">
+      <h1 style="color: #c1a88e; font-size: 4rem; font-weight: 700; text-shadow: 0 0 10px #8f7661;">MI BAT MITZVA</h1>
+      <p style="color: white; font-size: 1.5rem; font-weight: 500; text-transform: uppercase;">Y QUIERO CELEBRARLO CON VOS...</p>
+      <div class="stars-container position-absolute top-0 start-0 w-100 h-100 overflow-hidden" id="stars-container"></div>
     </div>
+  </div>
 
-    <div id="ubicacion" class="section" style="position: relative; height: 100vh; background: url('https://cdn0.casamientos.com.ar/vendor/7742/3_2/1280/jpg/www_7_177742-166870094263434.jpeg') no-repeat center center/cover; display: flex; align-items: center; justify-content: center;">
-        <div style="background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border-radius: 20px; padding: 30px; text-align: center; max-width: 400px;">
-            <h2 style="color: black;">FIESTA</h2>
-            <p style="color: black; font-size: 20px;">12:30 PM</p>
-            <h3 style="color: black;">JANO'S BENAVIDEZ 1</h3>
-            <a href="https://maps.app.goo.gl/6QCEr8jZSK7QptjP9" target="_blank" style="text-decoration: none; color: #000;"><button style="background: white; padding: 15px 25px; border-radius: 20px; font-size: 18px; border: none; cursor: pointer; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);">VER UBICACIÓN</button></a>
-        </div>
+  <div id="fecha" class="section" style="background-image: url(./IMG_1347.jpg); background-size: cover; background-position: top;">
+    <h2 class="countdown">FALTAN</h2>
+    <p class="countdown" id="countdown"></p>
+  </div>
+
+  <div id="ubicacion" class="section" style="background: url('https://cdn0.casamientos.com.ar/vendor/7742/3_2/1280/jpg/www_7_177742-166870094263434.jpeg') no-repeat center center/cover;">
+    <div style="background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border-radius: 20px; padding: 30px; text-align: center; max-width: 400px;">
+      <h2 style="color: black;">FIESTA</h2>
+      <p style="color: black; font-size: 20px;">12:30 PM</p>
+      <h3 style="color: black;">JANO'S BENAVIDEZ 1</h3>
+      <a href="https://maps.app.goo.gl/6QCEr8jZSK7QptjP9" target="_blank" style="text-decoration: none; color: #000;">
+        <button style="background: white; padding: 15px 25px; border-radius: 20px; font-size: 18px; border: none; cursor: pointer; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);">VER UBICACIÓN</button>
+      </a>
     </div>
-    
+  </div>
 
-    <div id="vestimenta" class="section" style="position: relative; height: 100vh; background: url('fondo.avif') no-repeat center center/cover; display: flex; align-items: center; justify-content: center;">
-        <div style="background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); border-radius: 20px; padding: 30px; text-align: center; max-width: 600px;">
-            <img src="formal_dress.jpg" alt="Icono Novios" style="width: 80px; display: block; margin: 0 auto 20px;">
-            <h2 style="color: black; font-size: 32px; margin-bottom: 10px;">CÓDIGO DE VESTIMENTA</h2>
-            <hr style="border: none; height: 2px; background: black; width: 50%; margin: 10px auto;">
-            <p style="color: black; font-size: 20px;">ELEGANTE / FORMAL</p>
-            <p style="color: black; font-size: 22px; font-weight: bold;">VESTIDO / TRAJE</p>
-        </div>
+  <div id="vestimenta" class="section" style="background: url('fondo.avif') no-repeat center center/cover;">
+    <div style="background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); border-radius: 20px; padding: 30px; text-align: center; max-width: 600px;">
+      <img src="formal_dress.jpg" alt="Icono Novios" style="width: 80px; display: block; margin: 0 auto 20px;">
+      <h2 style="color: black; font-size: 32px; margin-bottom: 10px;">CÓDIGO DE VESTIMENTA</h2>
+      <hr style="border: none; height: 2px; background: black; width: 50%; margin: 10px auto;">
+      <p style="color: black; font-size: 20px;">ELEGANTE / FORMAL</p>
+      <p style="color: black; font-size: 22px; font-weight: bold;">VESTIDO / TRAJE</p>
     </div>
+  </div>
 
-    <div id="info" class="section">
-        <div style="display: flex; align-items: center; width: 100%;">
-            <div id="carouselExample" class="carousel slide" style="height: 100%; max-width: 600px; margin: 0 auto;">
-                <div class="carousel-inner" style="border-top-left-radius: 30vh;
-border-top-right-radius: 30vh;">
-                  <div class="carousel-item active">
-                    <img src="./IMG_2744.JPG" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="./IMG_4849.JPG" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="./IMG_0330.JPG" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="./IMG_1661.JPG" class="d-block w-100" alt="...">
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>
-        
-              <div style="
-              flex: 0;
-              text-align: center;
-              padding: 20px;
-              width: 100%;
-              display: flex;
-              justify-content: space-around;
-          ">
-            <div style="
-                background-color: rgba(255, 255, 255, 0.5);
-                backdrop-filter: blur(10px);
-                border-radius: 20px;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-                padding: 30px 20px;
-                width: 50vw;
-            ">
-              <h2 style="
-                  color: #222;
-                  font-size: 32px;
-                  margin-bottom: 24px;
-                  font-family: 'Arial Rounded MT Bold', 'Segoe UI', sans-serif;
-              ">
-                DETALLES A TENER EN CUENTA
-              </h2>
-          
-              <ul style="
-                  color: #333;
-                  font-size: 18px;
-                  list-style: none;
-                  padding: 0;
-                  margin: 0;
-                  line-height: 1.7;
-                  font-family: 'Segoe UI', sans-serif;
-                  text-align: center;
-              ">
-                <li style="margin-bottom: 12px;">✨ ¡Por favor ser puntuales!</li>
-                <li style="margin-bottom: 12px;">🚗 El lugar cuenta con estacionamiento privado.</li>
-                <li style="margin-bottom: 12px;">🥗 Informanos si tenés alguna restricción alimentaria (veggie/sin Tacc, etc).</li>
-                <li style="margin-bottom: 12px;">📅 Confirmar asistencia a la brevedad, antes del <strong>01/03</strong>.</li>
-                <li style="margin-bottom: 12px;">🎉 ¡Olvidarse de todo y a disfrutar!</li>
-              </ul>
-            </div>
+  <div id="info" class="section">
+    <div class="section-inner">      <div id="carouselExample" class="carousel slide" style="flex: 1; max-width: 600px; margin: 0 auto;">
+        <div class="carousel-inner" style="border-top-left-radius: 30vh; border-top-right-radius: 30vh;">
+          <div class="carousel-item active">
+            <img src="./IMG_2744.JPG" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="./IMG_4849.JPG" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="./IMG_0330.JPG" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="./IMG_1661.JPG" class="d-block w-100" alt="...">
           </div>
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <div class="info-box" style="flex: 1; text-align: center; padding: 20px; max-width: 600px; margin: 0 auto;">
+        <div style="background-color: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 30px 20px;">
+          <h2 style="color: #222; font-size: 32px; margin-bottom: 24px; font-family: 'Arial Rounded MT Bold', 'Segoe UI', sans-serif;">DETALLES A TENER EN CUENTA</h2>
+          <ul style="color: #333; font-size: 18px; list-style: none; padding: 0; margin: 0; line-height: 1.7;">
+            <li>✨ ¡Por favor ser puntuales!</li>
+            <li>🚗 El lugar cuenta con estacionamiento privado.</li>
+            <li>🥗 Informanos si tenés alguna restricción alimentaria.</li>
+            <li>📅 Confirmar asistencia antes del <strong>01/03</strong>.</li>
+            <li>🎉 ¡Olvidarse de todo y a disfrutar!</li>
+          </ul>
+        </div>
+      </div>
     </div>
+  </div>
 
-
-
-    <div id="confirmar" class="section">
-        <h2>CONFIRMAR ASISTENCIA</h2>
-        <p>Tu presencia es muy importante, ¿venís a la fiesta?</p>
-        <button class="confirmation-button">CONFIRMAR</button>
+  <div class="section" style="background: url('image.png') no-repeat center center/cover;">
+    <div style="background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); border-radius: 20px; padding: 30px; text-align: center; max-width: 600px;">
+      <img src="spotify.webp" alt="Icono Novios" style="width: 80px; display: block; margin: 0 auto 20px;">
+      <h2 style="color: black; font-size: 32px; margin-bottom: 10px;">SE PARTE DE LA MUSICA DE MI FIESTA</h2>
+      <hr style="border: none; height: 2px; background: black; width: 50%; margin: 10px auto;">
+      <p style="color: black; font-size: 20px;">AGREGA CANCIONES A MI PLAYLIST DE SPOTIFY</p>
+      <a style="text-decoration: none;" target="_blank" href="https://open.spotify.com/playlist/2VtB4wCPD7JQI7pWqnsfV2?si=a1483e8cb3cb432c&pt=a9617bcd4444f46d38d01bb52d95282a">
+        <p style="color: black; font-size: 22px; font-weight: bold;">IR ALLÁ</p>
+      </a>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+  </div>
 
-    <script>
-        function countdownTimer() {
-        const eventDate = new Date("2025-08-24T12:30:00").getTime();
-        setInterval(() => {
-            const now = new Date().getTime();
-            const timeLeft = eventDate - now;
-            const months = Math.floor(timeLeft / (1000 * 60 * 60 * 24 * 30));
-            const days = Math.floor((timeLeft % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-            document.getElementById("countdown").innerHTML = `${months}m ${days}d ${hours}h ${minutes}m ${seconds}s`;
-        }, 1000);
+  <div id="confirmar" class="section">
+    <h2>CONFIRMAR ASISTENCIA</h2>
+    <p>Tu presencia es muy importante, ¿venís a la fiesta?</p>
+    <button class="confirmation-button">CONFIRMAR</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function countdownTimer() {
+      const eventDate = new Date("2025-08-24T12:30:00").getTime();
+      setInterval(() => {
+        const now = new Date().getTime();
+        const timeLeft = eventDate - now;
+        const months = Math.floor(timeLeft / (1000 * 60 * 60 * 24 * 30));
+        const days = Math.floor((timeLeft % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        document.getElementById("countdown").innerHTML = `${months}m ${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }, 1000);
     }
     countdownTimer();
 
+    function generarEstrellas(cantidad = 40) {
+      const contenedor = document.getElementById("stars-container");
+      contenedor.innerHTML = "";
 
-  function generarEstrellas(cantidad = 40) {
-    const contenedor = document.getElementById("stars-container");
-    contenedor.innerHTML = "";
+      const contenedorWidth = contenedor.offsetWidth;
+      const contenedorHeight = contenedor.offsetHeight;
 
-    const contenedorWidth = contenedor.offsetWidth;
-    const contenedorHeight = contenedor.offsetHeight;
+      for (let i = 0; i < cantidad; i++) {
+        const estrella = document.createElement("div");
+        estrella.classList.add("star");
 
-    for (let i = 0; i < cantidad; i++) {
-      const estrella = document.createElement("div");
-      estrella.classList.add("star");
+        const size = 5 + Math.random() * 6;
+        estrella.style.width = estrella.style.height = `${size}px`;
 
-      const size = 5 + Math.random() * 6;
-      estrella.style.width = estrella.style.height = `${size}px`;
+        const maxLeft = contenedorWidth - size;
+        const maxTop = contenedorHeight - size;
 
-      // márgenes seguros: 0% + size/2 y 100% - size/2
-      const maxLeft = contenedorWidth - size;
-      const maxTop = contenedorHeight - size;
+        estrella.style.left = `${Math.random() * maxLeft}px`;
+        estrella.style.top = `${Math.random() * maxTop}px`;
+        estrella.style.animationDuration = `${1 + Math.random() * 3}s`;
 
-      estrella.style.left = `${Math.random() * maxLeft}px`;
-      estrella.style.top = `${Math.random() * maxTop}px`;
-      estrella.style.animationDuration = `${1 + Math.random() * 3}s`;
-
-      contenedor.appendChild(estrella);
+        contenedor.appendChild(estrella);
+      }
     }
-  }
 
-  // Aseguramos que las dimensiones del contenedor estén listas
-  window.addEventListener('load', () => generarEstrellas(40));
-  window.addEventListener('resize', () => generarEstrellas(40)); // reacomoda en resize
-</script>
-  
-    
+    window.addEventListener('load', () => generarEstrellas(40));
+    window.addEventListener('resize', () => generarEstrellas(40));
+  </script>
 </body>
 </html>
