@@ -522,92 +522,53 @@
     window.addEventListener('load', () => generarEstrellas(120));
     window.addEventListener('resize', () => generarEstrellas(120));
 
-    // Auto-reproducir primeros 10 segundos del video
-    function setupVideoAutoplay() {
+    // Auto-reproducir primeros 10 segundos en bucle
+    function setupVideoPreview() {
       const video = document.getElementById('sofi-video');
       if (video) {
-        let hasStartedAutoplay = false;
+        let isPreviewMode = true;
         
         // Observador para detectar cuando el video entra en vista
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
-            if (entry.isIntersecting && !hasStartedAutoplay) {
-              hasStartedAutoplay = true;
-              // Reproducir automáticamente (muted para cumplir políticas del navegador)
+            if (entry.isIntersecting && isPreviewMode) {
+              // Iniciar preview automático
+              video.currentTime = 0;
               video.play().catch(e => console.log('Autoplay no permitido:', e));
-              
-              // Pausar después de 10 segundos
-              setTimeout(() => {
-                if (!video.paused && video.currentTime < 10.5) {
-                  video.pause();
-                  // Mostrar un overlay para indicar que pueden hacer clic para continuar
-                  showPlayIndicator(video);
-                }
-              }, 10000);
-              
-              // Desconectar el observador después del primer uso
-              observer.disconnect();
             }
           });
         }, { threshold: 0.5 });
         
         observer.observe(video);
         
-        // Cuando el usuario hace clic en el video, activar audio
+        // Controlar el bucle de 10 segundos
+        video.addEventListener('timeupdate', function() {
+          if (isPreviewMode && video.currentTime >= 10) {
+            video.currentTime = 0; // Volver al inicio para hacer bucle
+          }
+        });
+        
+        // Cuando el usuario hace clic en play, salir del modo preview
         video.addEventListener('click', function() {
-          if (video.muted) {
-            video.muted = false;
-            video.currentTime = 0; // Reiniciar desde el principio con audio
+          if (isPreviewMode) {
+            isPreviewMode = false;
+            video.muted = false; // Activar audio
+            video.currentTime = 0; // Empezar desde el principio
+            video.play();
+          }
+        });
+        
+        // También detectar cuando usan los controles
+        video.addEventListener('play', function() {
+          if (!video.muted && isPreviewMode) {
+            isPreviewMode = false;
           }
         });
       }
     }
     
-    function showPlayIndicator(video) {
-      // Crear overlay temporal
-      const overlay = document.createElement('div');
-      overlay.style.cssText = `
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: rgba(0,0,0,0.8);
-        color: white;
-        padding: 15px 25px;
-        border-radius: 25px;
-        font-size: 16px;
-        font-weight: bold;
-        pointer-events: none;
-        z-index: 1000;
-        animation: fadeInOut 3s ease-in-out;
-      `;
-      overlay.textContent = '▶ Toca para ver el video completo';
-      
-      const videoContainer = video.parentElement;
-      videoContainer.appendChild(overlay);
-      
-      // Remover después de 3 segundos
-      setTimeout(() => {
-        if (overlay && overlay.parentElement) {
-          overlay.parentElement.removeChild(overlay);
-        }
-      }, 3000);
-      
-      // Agregar animación CSS
-      const style = document.createElement('style');
-      style.textContent = `
-        @keyframes fadeInOut {
-          0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-          20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-          80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-          100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-        }
-      `;
-      document.head.appendChild(style);
-    }
-    
     // Inicializar cuando el DOM esté listo
-    window.addEventListener('load', setupVideoAutoplay);
+    window.addEventListener('load', setupVideoPreview);
   </script>
 </body>
 </html>
