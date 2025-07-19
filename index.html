@@ -51,11 +51,57 @@
       padding: 160px 20px;
     }
 
+    .section.compact {
+      height: auto;
+      min-height: fit-content;
+      padding: 30px 20px;
+    }
+
     .countdown {
-      font-size: 40px;
-      color: white;
-      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+      font-size: 48px;
+      color: #fff;
       font-weight: bold;
+      -webkit-text-stroke: 3px #8f7661;
+      text-shadow: 
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 15px #c1a88e,
+        0 0 25px #c1a88e,
+        0 0 35px #c1a88e,
+        0 0 45px #c1a88e,
+        0 0 55px #c1a88e;
+      animation: neon-glow 1s ease-in-out infinite alternate, pulse-scale 2s ease-in-out infinite;
+      font-family: 'Arial Black', Arial, sans-serif;
+      letter-spacing: 3px;
+      transform-origin: center;
+    }
+
+    @keyframes neon-glow {
+      from {
+        text-shadow: 
+          0 0 5px #fff,
+          0 0 10px #fff,
+          0 0 15px #c1a88e,
+          0 0 25px #c1a88e,
+          0 0 35px #c1a88e,
+          0 0 45px #c1a88e,
+          0 0 55px #c1a88e;
+      }
+      to {
+        text-shadow: 
+          0 0 2px #fff,
+          0 0 8px #fff,
+          0 0 12px #c1a88e,
+          0 0 20px #c1a88e,
+          0 0 30px #c1a88e,
+          0 0 40px #c1a88e,
+          0 0 50px #c1a88e;
+      }
+    }
+
+    @keyframes pulse-scale {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
 
     .confirmation-button, .gift-button {
@@ -78,13 +124,26 @@
 
     .star {
       position: absolute;
+      background: white;
+      opacity: 0.8;
+      box-shadow: 0 0 12px white, 0 0 24px rgba(255, 255, 255, 0.8);
+      animation: twinkle 3s infinite ease-in-out;
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+
+    .star.small {
       width: 8px;
       height: 8px;
-      background: white;
-      border-radius: 50%;
-      opacity: 0.6;
-      box-shadow: 0 0 8px white;
-      animation: twinkle 2s infinite ease-in-out;
+    }
+
+    .star.medium {
+      width: 12px;
+      height: 12px;
+    }
+
+    .star.large {
+      width: 16px;
+      height: 16px;
     }
     .section-inner {
   display: flex;
@@ -128,8 +187,11 @@
     }
 
     @keyframes twinkle {
-      0%, 100% { opacity: 0.2; transform: scale(0.8); }
-      50% { opacity: 1; transform: scale(1.4); }
+      0% { opacity: 0.1; transform: scale(0.5) rotate(0deg); }
+      25% { opacity: 0.6; transform: scale(0.8) rotate(90deg); }
+      50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+      75% { opacity: 0.8; transform: scale(1) rotate(270deg); }
+      100% { opacity: 0.2; transform: scale(0.6) rotate(360deg); }
     }
 
     @media (max-width: 768px) {
@@ -161,7 +223,16 @@
       }
 
       .countdown {
-        font-size: 28px;
+        font-size: 32px;
+        -webkit-text-stroke: 2px #8f7661;
+        text-shadow: 
+          0 0 3px #fff,
+          0 0 6px #fff,
+          0 0 9px #c1a88e,
+          0 0 15px #c1a88e,
+          0 0 20px #c1a88e,
+          0 0 30px #c1a88e;
+        letter-spacing: 2px;
       }
 
       .confirmation-button {
@@ -205,18 +276,21 @@
     <a href="#confirmar">Confirmar asistencia</a>
   </div>
 
-  <div id="inicio" class="section" style="position: relative; background: url('IMG_0181.JPG') no-repeat center center / cover;">
+  <div id="inicio" class="section" style="position: relative; background: url('IMG_0181.JPG') no-repeat center center / cover; height: calc(100vh - 100px);">
     <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); backdrop-filter: blur(5px); z-index: 0;"></div>
-    <div class="container position-relative z-1 text-center">
-      <h1 style="color: #c1a88e; font-size: 4rem; font-weight: 700; text-shadow: 0 0 10px #8f7661;">MI BAT MITZVA</h1>
-      <p style="color: white; font-size: 1.5rem; font-weight: 500; text-transform: uppercase;">Y QUIERO CELEBRARLO CON VOS...</p>
-      <div class="stars-container position-absolute top-0 start-0 w-100 h-100 overflow-hidden" id="stars-container"></div>
+    <div class="stars-container position-absolute top-0 start-0 w-100 h-100 overflow-hidden" id="stars-container" style="z-index: 1;"></div>
+    <div class="container position-relative text-center" style="z-index: 2;">
+      <h1 style="color: #c1a88e; font-size: 5.5rem; font-weight: 700; text-shadow: 0 0 15px #8f7661;">MI BAT MITZVA</h1>
+      <p style="color: white; font-size: 2rem; font-weight: 500; text-transform: uppercase;">Y QUIERO CELEBRARLO CON VOS...</p>
     </div>
   </div>
 
-  <div id="fecha" class="section" style="background-image: url(./45.jpg); background-size: cover; background-position: top;">
-    <h2 class="countdown">FALTAN</h2>
-    <p class="countdown" id="countdown"></p>
+  <div id="fecha" class="section" style="background-image: url(./45.jpg); background-size: cover; background-position: top; position: relative;">
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle, transparent 30%, rgba(0,0,0,0.4) 70%); z-index: 1;"></div>
+    <div style="position: relative; z-index: 2;">
+      <h2 class="countdown">FALTAN</h2>
+      <p class="countdown" id="countdown"></p>
+    </div>
   </div>
 
   <div id="ubicacion" class="section min-height" style="background: url('https://cdn0.casamientos.com.ar/vendor/7742/3_2/1280/jpg/www_7_177742-166870094263434.jpeg') no-repeat center center/cover;">
@@ -230,39 +304,53 @@
     </div>
   </div>
 
-    <div id="vestimenta" class="section" style="background: url('fondo.avif') no-repeat center center/cover;">
-    <div class="section-inner" style="display:flex; align-items:center; justify-content:center; gap:40px; flex-wrap:wrap; width:100%;">
+    <div id="vestimenta" class="section" style="background: url('fondo.avif') no-repeat center center/cover; position: relative;">
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 100%); z-index: 1;"></div>
+    <div class="section-inner" style="display:flex; align-items:center; justify-content:center; gap:40px; flex-wrap:wrap; width:100%; position: relative; z-index: 2;">
       
       <!-- Izquierda: Dress-code box -->
       <div style="
           flex:1;
-          min-width:280px;
-          background: rgba(255, 255, 255, 0.5);
-          backdrop-filter: blur(10px);
-          border-radius: 20px;
-          padding: 30px;
+          min-width:320px;
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+          backdrop-filter: blur(15px);
+          border-radius: 25px;
+          padding: 40px 30px;
           text-align: center;
-        ">
-        <img src="formal_dress.jpg" alt="Icono Vestimenta" style="width: 80px; display: block; margin: 0 auto 20px;">
-        <h2 style="color: black; font-size: 32px; margin-bottom: 10px;">CÓDIGO DE VESTIMENTA</h2>
-        <hr style="border: none; height: 2px; background: black; width: 50%; margin: 10px auto;">
-        <p style="color: black; font-size: 20px;">ELEGANTE / FORMAL</p>
-        <p style="color: rgb(53, 50, 50); font-size: 22px; font-weight: bold;">VESTIDO / TRAJE</p>
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          transform: translateY(0);
+          transition: all 0.3s ease;
+        " onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 12px 40px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 32px rgba(0,0,0,0.15)'">
+        <div style="background: linear-gradient(135deg, #c1a88e, #8f7661); width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; box-shadow: 0 4px 20px rgba(143, 118, 97, 0.3);">
+          <img src="formal_dress.jpg" alt="Icono Vestimenta" style="width: 50px; height: 50px; object-fit: contain;">
+        </div>
+        <h2 style="color: #2c2c2c; font-size: 28px; margin-bottom: 20px; font-weight: 700; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">CÓDIGO DE VESTIMENTA</h2>
+        <div style="width: 80px; height: 3px; background: linear-gradient(90deg, #c1a88e, #8f7661); margin: 0 auto 25px; border-radius: 2px;"></div>
+        <p style="color: #444; font-size: 22px; font-weight: 600; margin-bottom: 15px;">Elegante / Formal</p>
+        <p style="color: #555; font-size: 18px; font-weight: 500; margin-bottom: 25px; line-height: 1.4;">¡Traé tu mejor look para celebrar como se merece este gran día!</p>
+
       </div>
       
       <!-- Derecha: Video vertical -->
       <div style="
           flex:1;
-          min-width:280px;
+          min-width:320px;
           display:flex;
           align-items:center;
           justify-content:center;
+          position: relative;
         ">
-        <video controls
-               style="height: 80vh; max-height: 600px; width: auto; border-radius: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
-          <source src="01STD.mp4" type="video/mp4">
-          Tu navegador no soporta la reproducción de video.
-        </video>
+        <div style="position: relative; transform: translateY(0); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+          <video controls
+                 style="height: 80vh; max-height: 600px; width: auto; border-radius: 25px; box-shadow: 0 12px 40px rgba(0,0,0,0.3); border: 3px solid rgba(255,255,255,0.2);">
+            <source src="01STD.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de video.
+          </video>
+          <div style="position: absolute; top: -10px; right: -10px; background: linear-gradient(135deg, #c1a88e, #8f7661); color: white; padding: 8px 12px; border-radius: 15px; font-size: 14px; font-weight: bold; box-shadow: 0 4px 15px rgba(143, 118, 97, 0.4);">
+            ✨ SOFI
+          </div>
+        </div>
       </div>
 
     </div>
@@ -302,6 +390,7 @@
             <li>✨ ¡Por favor ser puntuales!</li>
             <li>🚗 El lugar cuenta con estacionamiento privado.</li>
             <li>🥗 Informanos si tenés alguna restricción alimentaria.</li>
+            <li>🥛 Importante: el menú será lácteo.</li>
             <li>📅 Confirmar asistencia antes del <strong>25/07</strong>.</li>
             <li>🎉 ¡Olvidarse de todo y a disfrutar!</li>
           </ul>
@@ -310,7 +399,7 @@
     </div>
   </div>
 
-  <div class="section" style="background: url('image.png') no-repeat center center/cover;">
+  <div class="section min-height" style="background: url('image.png') no-repeat center center/cover;">
     <div style="background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); border-radius: 20px; padding: 30px; text-align: center; max-width: 600px;">
       <img src="spotify.webp" alt="Icono Novios" style="width: 80px; display: block; margin: 0 auto 20px;">
       <h2 style="color: black; font-size: 32px; margin-bottom: 10px;">SE PARTE DE LA MUSICA DE MI FIESTA</h2>
@@ -322,14 +411,14 @@
     </div>
   </div>
 
-  <div id="confirmar" class="section min-height">
+  <div id="confirmar" class="section compact">
   <h2>CONFIRMAR ASISTENCIA</h2>
   <p>Tu respuesta es muy importante ✨. Por favor, completá el formulario tanto si vas a venir como si no podés asistir 🙏</p>
   <button class="confirmation-button" onclick="window.open('https://forms.gle/23ZmjSkq5WZkuUBY9', '_blank')">CONFIRMAR</button>
 </div>
-<section class="section final-message min-height" style="background-color: #e6ddd2;">
+<section class="section final-message compact" style="background-color: #e6ddd2;">
   <div class="container">
-    <p style="font-size: 1.5rem; text-align: center; font-style: italic; color: #555; padding: 2rem;">
+    <p style="font-size: 1.5rem; text-align: center; font-style: italic; color: #555; padding: 2rem; animation: pulse-scale 3s ease-in-out infinite; transform-origin: center;">
       🌸🕊️ <strong>El Bat Mitzvá de Sofi</strong> marca un nuevo comienzo,<br />
       y nos llena el corazón poder compartirlo con vos.
     </p>
@@ -355,7 +444,7 @@
     }
     countdownTimer();
 
-    function generarEstrellas(cantidad = 40) {
+    function generarEstrellas(cantidad = 120) {
       const contenedor = document.getElementById("stars-container");
       contenedor.innerHTML = "";
 
@@ -366,22 +455,30 @@
         const estrella = document.createElement("div");
         estrella.classList.add("star");
 
-        const size = 5 + Math.random() * 6;
-        estrella.style.width = estrella.style.height = `${size}px`;
+        // Diferentes tamaños de estrellas
+        const sizeTypes = ['small', 'medium', 'large'];
+        const randomSize = sizeTypes[Math.floor(Math.random() * sizeTypes.length)];
+        estrella.classList.add(randomSize);
 
-        const maxLeft = contenedorWidth - size;
-        const maxTop = contenedorHeight - size;
+        const starSize = randomSize === 'small' ? 8 : randomSize === 'medium' ? 12 : 16;
+        
+        const maxLeft = contenedorWidth - starSize;
+        const maxTop = contenedorHeight - starSize;
 
+        // Distribuir estrellas por toda la altura de la sección
         estrella.style.left = `${Math.random() * maxLeft}px`;
         estrella.style.top = `${Math.random() * maxTop}px`;
-        estrella.style.animationDuration = `${1 + Math.random() * 3}s`;
+        
+        // Diferentes duraciones de animación para mayor naturalidad
+        estrella.style.animationDuration = `${2 + Math.random() * 4}s`;
+        estrella.style.animationDelay = `${Math.random() * 2}s`;
 
         contenedor.appendChild(estrella);
       }
     }
 
-    window.addEventListener('load', () => generarEstrellas(40));
-    window.addEventListener('resize', () => generarEstrellas(40));
+    window.addEventListener('load', () => generarEstrellas(120));
+    window.addEventListener('resize', () => generarEstrellas(120));
   </script>
 </body>
 </html>
