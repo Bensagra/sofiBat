@@ -239,6 +239,31 @@
         font-size: 18px;
         padding: 12px 20px;
       }
+
+      /* Textos de inicio más pequeños en móvil */
+      #inicio h1 {
+        font-size: 3.5rem !important;
+      }
+
+      #inicio h2 {
+        font-size: 2rem !important;
+      }
+
+      #inicio p {
+        font-size: 1.5rem !important;
+      }
+
+      /* Sección fecha - mostrar imagen completa en móvil */
+      #fecha {
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+        background-position: center center !important;
+        min-height: 60vh !important;
+        height: auto !important;
+        padding: 20px !important;
+        justify-content: center !important;
+        align-items: center !important;
+      }
     }
     @media (max-width: 768px) {
   #info .section-inner {
@@ -279,14 +304,17 @@
   <div id="inicio" class="section" style="position: relative; background: url('IMG_0181.JPG') no-repeat center center / cover; height: calc(100vh - 100px);">
     <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); backdrop-filter: blur(5px); z-index: 0;"></div>
     <div class="stars-container position-absolute top-0 start-0 w-100 h-100 overflow-hidden" id="stars-container" style="z-index: 1;"></div>
+    <!-- BH en esquina superior derecha de esta sección -->
+    <div style="position: absolute; top: 70px; right: 20px; z-index: 100; color: #c1a88e; font-size: 18px; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.6);">BH"</div>
     <div class="container position-relative text-center" style="z-index: 2;">
       <h1 style="color: #c1a88e; font-size: 5.5rem; font-weight: 700; text-shadow: 0 0 15px #8f7661;">MI BAT MITZVA</h1>
+      <h2 style="color: #c1a88e; font-size: 3rem; font-weight: 600; text-shadow: 0 0 12px #8f7661; margin-top: 10px; direction: rtl;">הבת מצווה שלי</h2>
       <p style="color: white; font-size: 2rem; font-weight: 500; text-transform: uppercase;">Y QUIERO CELEBRARLO CON VOS...</p>
     </div>
   </div>
 
   <div id="fecha" class="section" style="background-image: url(./45.jpg); background-size: cover; background-position: top; position: relative;">
-    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle, transparent 30%, rgba(0,0,0,0.4) 70%); z-index: 1;"></div>
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.3); z-index: 1;"></div>
     <div style="position: relative; z-index: 2;">
       <h2 class="countdown">FALTAN</h2>
       <p class="countdown" id="countdown"></p>
@@ -391,7 +419,7 @@
             <li>🚗 El lugar cuenta con estacionamiento privado.</li>
             <li>🥗 Informanos si tenés alguna restricción alimentaria.</li>
             <li>🥛 Importante: el menú será lácteo.</li>
-            <li>📅 Confirmar asistencia antes del <strong>25/07</strong>.</li>
+            <li>📅 Confirmar asistencia antes del <strong>25/07</strong>. <a href="https://forms.gle/23ZmjSkq5WZkuUBY9" target="_blank" style="color: #8f7661; text-decoration: underline; font-weight: bold;">¡Confirmar aquí!</a></li>
             <li>🎉 ¡Olvidarse de todo y a disfrutar!</li>
           </ul>
         </div>
