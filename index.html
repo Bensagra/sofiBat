@@ -264,6 +264,14 @@
         justify-content: center !important;
         align-items: center !important;
       }
+
+      /* Video en móvil */
+      #vestimenta video {
+        height: 50vh !important;
+        max-height: 400px !important;
+        width: 100% !important;
+        max-width: 300px !important;
+      }
     }
     @media (max-width: 768px) {
   #info .section-inner {
@@ -370,7 +378,7 @@
           position: relative;
         ">
         <div style="position: relative; transform: translateY(0); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-          <video controls
+          <video id="sofi-video" controls preload="metadata" playsinline poster="./45_Book.jpg" muted
                  style="height: 80vh; max-height: 600px; width: auto; border-radius: 25px; box-shadow: 0 12px 40px rgba(0,0,0,0.3); border: 3px solid rgba(255,255,255,0.2);">
             <source src="01STD.mp4" type="video/mp4">
             Tu navegador no soporta la reproducción de video.
@@ -507,6 +515,93 @@
 
     window.addEventListener('load', () => generarEstrellas(120));
     window.addEventListener('resize', () => generarEstrellas(120));
+
+    // Auto-reproducir primeros 10 segundos del video
+    function setupVideoAutoplay() {
+      const video = document.getElementById('sofi-video');
+      if (video) {
+        let hasStartedAutoplay = false;
+        
+        // Observador para detectar cuando el video entra en vista
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting && !hasStartedAutoplay) {
+              hasStartedAutoplay = true;
+              // Reproducir automáticamente (muted para cumplir políticas del navegador)
+              video.play().catch(e => console.log('Autoplay no permitido:', e));
+              
+              // Pausar después de 10 segundos
+              setTimeout(() => {
+                if (!video.paused && video.currentTime < 10.5) {
+                  video.pause();
+                  // Mostrar un overlay para indicar que pueden hacer clic para continuar
+                  showPlayIndicator(video);
+                }
+              }, 10000);
+              
+              // Desconectar el observador después del primer uso
+              observer.disconnect();
+            }
+          });
+        }, { threshold: 0.5 });
+        
+        observer.observe(video);
+        
+        // Cuando el usuario hace clic en el video, activar audio
+        video.addEventListener('click', function() {
+          if (video.muted) {
+            video.muted = false;
+            video.currentTime = 0; // Reiniciar desde el principio con audio
+          }
+        });
+      }
+    }
+    
+    function showPlayIndicator(video) {
+      // Crear overlay temporal
+      const overlay = document.createElement('div');
+      overlay.style.cssText = `
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0,0,0,0.8);
+        color: white;
+        padding: 15px 25px;
+        border-radius: 25px;
+        font-size: 16px;
+        font-weight: bold;
+        pointer-events: none;
+        z-index: 1000;
+        animation: fadeInOut 3s ease-in-out;
+      `;
+      overlay.textContent = '▶ Toca para ver el video completo';
+      
+      const videoContainer = video.parentElement;
+      videoContainer.appendChild(overlay);
+      
+      // Remover después de 3 segundos
+      setTimeout(() => {
+        if (overlay && overlay.parentElement) {
+          overlay.parentElement.removeChild(overlay);
+        }
+      }, 3000);
+      
+      // Agregar animación CSS
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes fadeInOut {
+          0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+          20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+          80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+          100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+    
+    // Inicializar cuando el DOM esté listo
+    window.addEventListener('load', setupVideoAutoplay);
   </script>
 </body>
 </html>
